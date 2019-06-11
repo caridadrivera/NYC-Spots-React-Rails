@@ -2,7 +2,6 @@ import React from 'react';
 import SignIn from '/Users/caridadrivera/ive-been-there/src/components/auth/SignIn/SignIn.js';
 import SignUp from '/Users/caridadrivera/ive-been-there/src/components/auth/SignUp/SignUp'
 import './LogginPage.css';
-let setUser;
 
 
 class LogginPage extends React.Component {
@@ -10,14 +9,12 @@ class LogginPage extends React.Component {
 
 
   render() {
-    // console.log(background)
+  // console.log(this.props)
 
     return (
       <div className="home">
-        <SignIn />
+        <SignIn handleUserLogin={this.props.handleUserLogin} />
       </div>
-
-
 
     );
   }

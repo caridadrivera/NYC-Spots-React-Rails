@@ -34,6 +34,7 @@ class SignIn extends React.Component {
 
 
   handleSubmit = e => {
+    console.log(this.props)
     e.preventDefault();
     console.log(this.state.fields);
     fetch('http://localhost:3000/api/v1/auth', {
@@ -46,7 +47,13 @@ class SignIn extends React.Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
+      if (res.error) {
+        this.setState({error: true})
+      }
+      else {
+        this.props.handleUserLogin(res)
+        this.props.history.push("/userpage")
+      }
     })
     this.setState({initialState})
   };
