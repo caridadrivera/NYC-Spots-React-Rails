@@ -1,9 +1,13 @@
 import React from 'react';
+import './Post.css'
+
+
 
 class Post extends React.Component {
 
   state = {
-    posts: []
+    posts: [],
+    currentUser: {}
   }
 
   componentWillMount() {
@@ -15,14 +19,14 @@ class Post extends React.Component {
   }
 
 
-
+// post.filter( post => post.user_id == )
   render() {
     // console.log(background)
     console.log(this.state)
 const postItems = this.state.posts.map(post => (
   <div key={post.id}>
   <h3> {post.title} </h3>
-  <p> {post.image_url} </p>
+  <img src={post.image_url}/>
   </div>
   ))
     return (
@@ -30,13 +34,17 @@ const postItems = this.state.posts.map(post => (
         <h1> Posts</h1>
         {postItems}
       </div>
-
-
-
     );
   }
 
 }
+
+
+// <div class="cards clearfix">
+//   <div class="card-col-1"></div>
+//   <div class="card-col-2"></div>
+//   <div class="card-col-3"></div>
+// </div>
 
 
 export default Post;

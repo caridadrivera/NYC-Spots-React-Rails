@@ -1,52 +1,95 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react';
+
+const initialState = {
+  error:false,
+  fields: {
+    username: '',
+    password: ''
+  }
+}
 
 
 class SignUp extends React.Component {
-  state = {
-    username: '',
-    password: '',
 
+
+  constructor() {
+    super();
+    this.state = initialState
   }
 
   /* when the user submits the input field */
 
   handleChange = (e) => {
+    const newFields = { ...this.state.fields, [e.target.name]: e.target.value};
     // console.log(e)
     /*I want the id of the input field being updated*/
     this.setState({
-      [e.target.id]: e.target.value
+      fields: newFields
     })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(this.state)
 
+  handleSubmit = (e) => {
+    console.log(this.props)
+    e.preventDefault();
+    console.log(this.state.fields);
+    fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(this.state.fields)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.error) {
+        this.setState({error: true})
+      }
+      else {
+        this.props.history.push("/userpage")
+      }
+    })
   }
 
 
   render() {
-
+      const { fields } = this.state
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3"> SignIn </h5>
-          <div className="input-field">
-            <label htmlFor="username"> Username </label>
-            <input type="username" id="username" onChange={this.handleChange}/>
+      <div>
+          <div className="container">
+            {
+              this.state.error &&
+              <div className="ui error message">
+                Try Again
+              </div>
+            }
+            <form onSubmit={this.handleSubmit}>
+              <div className="input-field">
+                <label>Username</label>
+                <input
+                  name="username"
+                  placeholder="username"
+                  value={fields.username}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="input-field">
+                <label>Password</label>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="password"
+                  value={fields.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <button type="submit" className="ui basic green button">
+                SignUp
+              </button>
+            </form>
           </div>
-          <div className="input-field">
-            <label htmlFor="password"> Password </label>
-            <input type="password" id="password" onChange={this.handleChange}/>
-          </div>
-
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0"> SignUp </button>
-          </div>
-        </form>
       </div>
-
     )
   }
 }
