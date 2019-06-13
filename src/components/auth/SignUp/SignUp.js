@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router-dom'
 const initialState = {
   error:false,
   fields: {
@@ -47,6 +47,8 @@ class SignUp extends React.Component {
         this.setState({error: true})
       }
       else {
+        console.log(this.props)
+         this.props.handleSignUp(res)
         this.props.history.push("/userpage")
       }
     })
@@ -94,4 +96,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default withRouter(SignUp);

@@ -1,5 +1,5 @@
 import React from 'react';
-import SignIn from '/Users/caridadrivera/ive-been-there/src/components/auth/SignIn/SignIn.js';
+import SignIn from '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/SignIn'
 // import SignUp from '/Users/caridadrivera/ive-been-there/src/components/auth/SignUp/SignUp'
 import './LogginPage.css';
 

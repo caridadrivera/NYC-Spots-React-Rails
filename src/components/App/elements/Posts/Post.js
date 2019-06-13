@@ -21,13 +21,28 @@ class Post extends React.Component {
 
 // post.filter( post => post.user_id == )
   render() {
-    // console.log(background)
-    console.log(this.state)
+// console.log(background)
+// console.log(this.state)
 const postItems = this.state.posts.map(post => (
-  <div key={post.id}>
-  <h3> {post.title} </h3>
-  <img src={post.image_url}/>
+  <div key={post.id} class= "ui card">
+    <div class="content">
+        <div class="post-content"> {post.title} </div>
+        <div class="right floated meta">{}</div>
+        <img class="ui avatar image" src={post.user}/>
+    </div>
+    <div class="image">
+      <img src={post.image_url}/>
+    </div>
+    <div class="content">
+      <span class="left floated">
+        <i class="heart outline like icon"></i>
+      </span>
+    <div class="description">
+      {post.content}
+    </div>
+    </div>
   </div>
+
   ))
     return (
       <div>
@@ -39,12 +54,6 @@ const postItems = this.state.posts.map(post => (
 
 }
 
-
-// <div class="cards clearfix">
-//   <div class="card-col-1"></div>
-//   <div class="card-col-2"></div>
-//   <div class="card-col-3"></div>
-// </div>
 
 
 export default Post;

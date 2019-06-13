@@ -5,6 +5,7 @@ import Post from '../Posts/Post';
 class UserPage extends React.Component {
 
 
+
   render() {
     return(
       <div>
@@ -12,7 +13,8 @@ class UserPage extends React.Component {
             <div onClick={this.props.handleLogout}>
               Logout
             </div> : null }
-      {<Post/>}
+
+      { <Post/>}
 
       </div>
     )

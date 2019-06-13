@@ -37,6 +37,11 @@ class App extends React.Component {
    this.props.history.push("/")
  }
 
+ handleSignUp = (user) => {
+   this.setState({currentUser: user})
+
+ }
+
  renderPage() {
    switch(this.state.page) {
      case "signin":
@@ -67,7 +72,10 @@ class App extends React.Component {
                 return <UserPage currentUser={this.state.currentUser} handleLogout={this.handleLogout} />}
               }
               />
-              <Route component={SignUp} />
+              <Route path="/signup" render={() => {
+                return <SignUp handleSignUp={this.handleSignUp} />}
+              }
+              />
           </Switch>
         </div>
       </Fragment>
