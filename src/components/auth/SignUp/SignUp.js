@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
+
 const initialState = {
   error:false,
   fields: {
@@ -30,28 +31,31 @@ class SignUp extends React.Component {
 
 
   handleSubmit = (e) => {
-    console.log(this.props)
     e.preventDefault();
-    console.log(this.state.fields);
-    fetch('http://localhost:3000/api/v1/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(this.state.fields)
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.error) {
-        this.setState({error: true})
-      }
-      else {
-        console.log(this.props)
-         this.props.handleSignUp(res)
-        this.props.history.push("/userpage")
-      }
-    })
+    if (initialState) {
+      alert("woah, there! need those fields filled out!")
+    }
+    else {
+      fetch('http://localhost:3000/api/v1/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(this.state.fields)
+      })
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          this.setState({error: true})
+        }
+        else {
+          console.log(this.props)
+           this.props.handleSignUp(res)
+          this.props.history.push("/userpage")
+        }
+      })
+    }
   }
 
 
