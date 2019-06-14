@@ -27,7 +27,7 @@ componentDidMount() {
       })
       .then(r => r.json())
       .then((user) => {
-        console.log(user)
+        // console.log(user)
         if (!user.error) {
           this.setState({currentUser: user})
           this.props.history.push('/userpage')
