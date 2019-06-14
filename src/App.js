@@ -5,9 +5,9 @@ import LogginPage from './components/App/elements/LogginPage/LogginPage';
 import Post from './components/App/elements/Posts/Post'
 import SignIn from './components/auth/SignIn/SignIn'
 import SignUp from './components/auth/SignUp/SignUp'
-
 import NavBar from './components/App/elements/NavBar/NavBar'
 import UserPage from './components/App/elements/UserPage/UserPage'
+
 
 
 class App extends React.Component {
@@ -17,30 +17,50 @@ class App extends React.Component {
   }
 
 
-  componentDidMount() {
-    const token = localStorage.getItem("token")
+componentDidMount() {
+  const token = localStorage.getItem("token")
+  if (token) {
+    fetch("http://localhost:3000/api/v1/refresh", {
+      headers: {
+        Authorization: token
+        }
+      })
+      .then(r => r.json())
+      .then((user) => {
+        console.log(user)
+        if (!user.error) {
+          this.setState({currentUser: user})
+          this.props.history.push('/userpage')
+        }
+      })
+    }
   }
+
 
  handlePageClick = (page) => {
    this.setState({ page })
  }
 
 
+
  handleUserLogin = (user) => {
-   localStorage.setItem("token", user.id)
+   console.log("LOGGED USERR", user)
+   localStorage.setItem("token", user.token)
    this.setState({currentUser: user})
  }
+
 
  handleLogout = () => {
    localStorage.removeItem("token")
    this.setState({currentUser: null})
-   this.props.history.push("/")
+   this.props.history.push("/signin")
  }
+
 
  handleSignUp = (user) => {
    this.setState({currentUser: user})
-
  }
+
 
  renderPage() {
    switch(this.state.page) {
@@ -58,18 +78,16 @@ class App extends React.Component {
     return (
 
       <Fragment>
-        <NavBar
-          handlePageClick={this.handlePageClick}
-        />
+
 
         <div className="ui container">
           <Switch>
-              <Route exact path="/" render={() => {
+              <Route exact path="/signin" render={() => {
                 return <LogginPage handleUserLogin={this.handleUserLogin}/>}
               }
               />
               <Route path="/userpage" render={() => {
-                return <UserPage currentUser={this.state.currentUser} handleLogout={this.handleLogout} />}
+                return <UserPage currentUser={this.state.currentUser} handleLogout={this.handleLogout} handlePageClick={this.handlePageClick} />}
               }
               />
               <Route path="/signup" render={() => {

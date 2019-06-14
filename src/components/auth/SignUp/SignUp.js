@@ -32,11 +32,8 @@ class SignUp extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (initialState) {
-      alert("woah, there! need those fields filled out!")
-    }
-    else {
-      fetch('http://localhost:3000/api/v1/users', {
+
+    fetch('http://localhost:3000/api/v1/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +52,7 @@ class SignUp extends React.Component {
           this.props.history.push("/userpage")
         }
       })
-    }
+
   }
 
 
