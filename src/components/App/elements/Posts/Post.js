@@ -1,26 +1,16 @@
 import React from 'react';
 import './Post.css'
 import UserPage from '../UserPage/UserPage'
-// import LikeButton from '../LikeButton/LikeButton'
+import PostCard from '../PostCard/PostCard'
+
 
 
 class Post extends React.Component {
 
 
 state = {
-  count: 0,
-  color: null
+  count: this.props.postLikes,
 }
-
-
-
-componentDidMount() {
-  let likeCount= localStorage.setItem('count', this.state.count + 1)
-  this.setState({
-    count: likeCount
-  })
-}
-
 
 
 onLikeClick= (postid, userid) => {
@@ -37,7 +27,10 @@ onLikeClick= (postid, userid) => {
       .then(res => res.json())
       .then((like) => {
         if (like.user_id === userid && like.post_id === postid) {
-          return this.state.count
+          this.setState( {
+          count: this.state.count + 1
+          })
+       console.log(this.state.count)
         }
       })
 
@@ -46,27 +39,17 @@ onLikeClick= (postid, userid) => {
 
 render() {
 
-  const posts = this.props.postItems.map(post =>
-    (
-     <div key={post.id} class= "ui card">
-      <div class="content">
-          <div class="post-content"> {post.title} </div>
-          <div class="right floated meta">{}</div>
-          <img class="ui avatar image" src={post.user}/>
-      </div>
-      <div class="image">
-        <img src={post.image_url}/>
-      </div>
-      <div class="content">
-        <span class="left floated">
-          <i class="heart outline like icon" onClick={() => this.onLikeClick(post.id, this.props.currentUser.id)} likes={this.state.count} > Likes: {this.state.count}</i>
-        </span>
-      <div class="description">
-        {post.content}
-      </div>
-      </div>
-    </div> )
+const likes = this.state.count
+// console.log(likes)
+const posts = this.props.postItems.map(post =>
+
+  <PostCard post={post}
+            onLikeClick={this.onLikeClick}
+            currentUser={this.props.currentUser}
+            likes={post.likes}
+             />
   )
+
 
     return (
 
