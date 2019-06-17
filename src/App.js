@@ -78,9 +78,7 @@ componentDidMount() {
     return (
 
       <Fragment>
-
-
-        <div className="ui container">
+        <div className="home-page">
           <Switch>
               <Route exact path="/signin" render={() => {
                 return <LogginPage handleUserLogin={this.handleUserLogin}/>}

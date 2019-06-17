@@ -1,12 +1,14 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import ReactDOM from 'react-dom';
+import Modal from 'react-responsive-modal';
 
 
 const initialState = {
   fields: {
     title: "",
     image_url: "",
-    content: ""
+    content: "",
   }
 }
 
@@ -52,7 +54,6 @@ class PostForm extends React.Component {
           return {
             posts: [
               newPost
-
             ]
           }
         })
@@ -62,9 +63,13 @@ class PostForm extends React.Component {
 
 
   render() {
-    // console.log(this.state.fields)
+
+   // console.log(this.props)
     const {fields} = this.state
     return (
+      <div>
+      <button onClick={this.props.onOpenModal}>add Post</button>
+    <Modal open={this.props.open} onClose={this.props.onCloseModal} center >
       <form
         className="ui form"
         onSubmit={this.handleSubmit}
@@ -83,6 +88,8 @@ class PostForm extends React.Component {
         </div>
         <button className="ui positive basic button">Add Post</button>
       </form>
+    </Modal>
+    </div>
     )
   }
 }

@@ -19,9 +19,7 @@ class SignIn extends React.Component {
     super();
     this.state = initialState
   }
-
   /* when the user submits the input field */
-
   handleChange = (e) => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value};
     // console.log(e)
@@ -33,7 +31,7 @@ class SignIn extends React.Component {
 
 
 
-  handleSubmit = e => {
+handleSubmit = e => {
     console.log(this.props)
     e.preventDefault();
     // console.log(this.state.fields);

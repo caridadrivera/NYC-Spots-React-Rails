@@ -11,9 +11,9 @@ class LogginPage extends React.Component {
   render() {
   // console.log(this.props)
     return (
-      <div className="home">
+        <div>
         <SignIn handleUserLogin={this.props.handleUserLogin} />
-      </div>
+        </div>
 
     );
   }

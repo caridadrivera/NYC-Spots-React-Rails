@@ -4,30 +4,42 @@ import './PostCard.css'
 class PostCard extends React.Component {
 
 render() {
+
+
+
+
   // console.log(this.props.likes.length)
   const likes = this.props.likes.length
   const post = this.props.post
   return(
     (
-     <div key={post.id} class= "ui card">
-      <div class="content">
-          <div class="post-content"> {post.title} </div>
-          <div class="right floated meta">{}</div>
-          <img class="ui avatar image" src={post.user}/>
-      </div>
-      <div class="image">
-        <img src={post.image_url}/>
-      </div>
-      <div class="content" onClick={() => this.props.onLikeClick(post.id, this.props.currentUser.id)}>
-        <span class="left floated">
-          <i class="heart outline like icon"> Likes: {likes} </i>
-        </span>
-      <div class="description">
-        {post.content}
-      </div>
-      </div>
-    </div>
-  )
+      <main class="main-area">
+
+        <div class="centered">
+
+          <section class="cards">
+
+            <article key={post.id} class="card">
+              <a href="#">
+                <figure class="thumbnail">
+                <img src={post.image_url} />
+                </figure>
+                <div class="card-content">
+                  <h2>{post.title}</h2>
+                  <p>{post.content}</p>
+                    <span class="left floated">
+                      <i class="heart outline like icon" onClick={() => this.props.onLikeClick(post.id, this.props.currentUser.id)}> Likes: {likes} </i>
+                    </span>
+
+                </div>
+              </a>
+            </article>
+
+          </section>
+
+        </div>
+      </main>
+    )
   )
 }
 

@@ -41,8 +41,8 @@ render() {
 
 const likes = this.state.count
 // console.log(likes)
-const posts = this.props.postItems.map(post =>
 
+const posts = this.props.postItems.map(post =>
   <PostCard post={post}
             onLikeClick={this.onLikeClick}
             currentUser={this.props.currentUser}
@@ -51,9 +51,10 @@ const posts = this.props.postItems.map(post =>
   )
 
 
+
     return (
 
-      <div class="scrolling-box">
+      <div >
         <h1> Posts</h1>
         {posts}
       </div>
