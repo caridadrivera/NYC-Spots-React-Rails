@@ -36,7 +36,7 @@ class SignIn extends React.Component {
   handleSubmit = e => {
     console.log(this.props)
     e.preventDefault();
-    console.log(this.state.fields);
+    // console.log(this.state.fields);
     fetch('http://localhost:3000/api/v1/auth', {
       method: 'POST',
       headers: {

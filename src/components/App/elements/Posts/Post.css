@@ -37,6 +37,16 @@
   border-radius: 4px 4px 0 0;
 }
 
+
+.scrolling-box {
+  background-color: #eaeaea;
+  display: block;
+  height: 500px;
+  overflow-y: scroll;
+  text-align: center;
+  width: 500px;
+}
+
 .top img{
   position: absolute;
   top: 0;

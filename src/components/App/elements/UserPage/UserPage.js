@@ -1,15 +1,17 @@
 import React from 'react';
 import Post from '../Posts/Post';
-// import PostFrom from './Posts/PostFrom';
+import PostForm from '../Posts/PostForm';
+
 
 class UserPage extends React.Component {
 
 
 state = {
-      posts: [],
+    posts: [],
   }
 
-componentWillMount() {
+
+componentDidMount() {
   const token = localStorage.getItem("token")
   if (!token) {
     this.props.history.push("signin")
@@ -26,16 +28,11 @@ componentWillMount() {
 }
 
 
-
-
   render() {
-  // debugger
-    const postLikes = this.state.posts.map(post =>{
-      return post.likes
-    })
 
-    // console.log(postLikes)
+  // debugger
     const postItems = this.state.posts
+// console.log(postItems)
     return(
 
       <div>
@@ -43,10 +40,16 @@ componentWillMount() {
             <div onClick={this.props.handleLogout}>
               Logout
             </div> : null }
+
+            {<PostForm postItems={postItems} currentUser={this.props.currentUser}/> }
+
+            <div>
+
           {<Post currentUser={this.props.currentUser}
                  postItems={postItems}
-                 postLikes={postLikes}
                  onClick={()=> this.props.onLikeClick}/>}
+
+          </div>
       </div>
     )
   }

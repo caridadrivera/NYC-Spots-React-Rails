@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import './PostCard.css'
 
 class PostCard extends React.Component {
 
@@ -27,7 +26,8 @@ render() {
         {post.content}
       </div>
       </div>
-    </div> )
+    </div>
+  )
   )
 }
 

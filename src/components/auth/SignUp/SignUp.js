@@ -52,7 +52,6 @@ class SignUp extends React.Component {
           this.props.history.push("/userpage")
         }
       })
-
   }
 
 

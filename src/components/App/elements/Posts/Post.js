@@ -9,7 +9,7 @@ class Post extends React.Component {
 
 
 state = {
-  count: this.props.postLikes,
+  count: 0,
 }
 
 
@@ -30,7 +30,7 @@ onLikeClick= (postid, userid) => {
           this.setState( {
           count: this.state.count + 1
           })
-       console.log(this.state.count)
+       // console.log(this.state.count)
         }
       })
 
@@ -53,7 +53,7 @@ const posts = this.props.postItems.map(post =>
 
     return (
 
-      <div>
+      <div class="scrolling-box">
         <h1> Posts</h1>
         {posts}
       </div>
