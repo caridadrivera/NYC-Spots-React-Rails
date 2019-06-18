@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './SignIn.css'
+import './SignIn.sass'
+import './Styling.js'
 
 const initialState = {
   error:false,
@@ -61,16 +62,19 @@ handleSubmit = e => {
     const { fields } = this.state
     return (
       <div>
-          <div className="container">
+        <div className="container">
             {
               this.state.error &&
               <div className="ui error message">
                 Try Again
               </div>
             }
+          <div className="wrapper">
+
             <form onSubmit={this.handleSubmit}>
-              <div className="input-field">
+              <div className="form-element">
                 <label>Username</label>
+                <span><i className="fa fa-envelope"></i></span>
                 <input
                   name="username"
                   placeholder="username"
@@ -78,8 +82,9 @@ handleSubmit = e => {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="input-field">
+              <div className="form-element">
                 <label>Password</label>
+                <span><i className="fa fa-envelope"></i></span>
                 <input
                   name="password"
                   type="password"
@@ -88,11 +93,13 @@ handleSubmit = e => {
                   onChange={this.handleChange}
                 />
               </div>
-              <button type="submit" className="ui basic green button">
+              <button type="submit" className="btn-login">
                 Login
               </button>
             </form>
+
           </div>
+        </div>
       </div>
     );
   }

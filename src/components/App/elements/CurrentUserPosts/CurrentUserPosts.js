@@ -9,7 +9,7 @@ render () {
   const userPosts = this.props.currentUser ? this.props.postItems.filter(post => post.user_id === this.props.currentUser.id) : []
   return (
     <div>
-  {userPosts.map(post => <PostCard post={post} likes={post.likes} currentUser={this.props.currentUser}/>)}
+  {userPosts.map(post => <PostCard post={post} likes={post.likes} currentUser={this.props.currentUser} handleDelete={() => this.props.handleDelete(post.id)}/>)}
     </div>
   )
 

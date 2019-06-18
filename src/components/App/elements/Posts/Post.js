@@ -8,24 +8,6 @@ import PostCard from '../PostCard/PostCard'
 class Post extends React.Component {
 
 
-
-handleDelete = (postid) => {
-  console.log("coming through", postid)
-  fetch(`http://localhost:3000/api/v1/posts/${postid}`, {
-    method: 'DELETE',
-    headers: {
-          'Content-Type': 'application/json',
-           Accept: 'application/json'
-               },
-    body: JSON.stringify({
-    id: postid})
-         })
-        this.props.handlePostDelete(postid)
-    //call function from parent in here and pass the id
-       }
-
-
-
 onLikeClick= (postid, userid) => {
     // console.log("Am I here??", postid, userid)
     fetch('http://localhost:3000/api/v1/likes', {
@@ -42,25 +24,25 @@ onLikeClick= (postid, userid) => {
         console.log("likes", res)
         this.props.handleLike(res)
       })
-
    }
 
 render() {
 // console.log(likes)
-const posts = this.props.postItems.map(post =>
+const currentUserPosts = this.props.currentUser ? this.props.postItems.filter(post => post.user_id !== this.props.currentUser.id) : []
+const posts = currentUserPosts.map(post =>
   <PostCard post={post}
             onLikeClick={this.onLikeClick}
             currentUser={this.props.currentUser}
             likes={post.likes}
-            handleDelete={this.handleDelete}
+            handleDelete={this.props.handleDelete}
              />
   )
 
-
     return (
 
-      <div >
+      <div>
         <h1> Posts</h1>
+
         {posts}
       </div>
     );

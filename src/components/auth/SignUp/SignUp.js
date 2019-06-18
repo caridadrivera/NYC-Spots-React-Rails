@@ -66,9 +66,11 @@ class SignUp extends React.Component {
                 Try Again
               </div>
             }
+
             <form onSubmit={this.handleSubmit}>
-              <div className="input-field">
+              <div className="form-element">
                 <label>Username</label>
+                <span><i class="fa fa-lock"></i></span>
                 <input
                   name="username"
                   placeholder="username"
@@ -76,8 +78,9 @@ class SignUp extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div className="input-field">
+              <div className="form-element">
                 <label>Password</label>
+                <span><i class="fa fa-lock"></i></span>
                 <input
                   name="password"
                   type="password"

@@ -48,12 +48,30 @@ handleLike = (likeObj) => {
 
 
 handlePostDelete = (postid) => {
-const updatedPosts = this.props.currentUser.posts.filter(post => post.id !== postid)
+const updatedPosts = this.state.posts.filter(post => post.id !== postid)
 console.log(updatedPosts);
   this.setState({
     posts: updatedPosts
   })
 }
+
+
+
+handleDelete = (postid) => {
+  console.log("coming through", postid)
+  fetch(`http://localhost:3000/api/v1/posts/${postid}`, {
+    method: 'DELETE',
+    headers: {
+          'Content-Type': 'application/json',
+           Accept: 'application/json'
+               },
+    body: JSON.stringify({
+    id: postid})
+         })
+        this.handlePostDelete(postid)
+    //call function from parent in here and pass the id
+       }
+
 
 
 
@@ -95,12 +113,16 @@ onCloseModal = () => {
                        onOpenModal={this.onOpenModal}
                        onCloseModal={this.onCloseModal}/>  }
 
-          {<CurrentUserPosts currentUser={this.props.currentUser} userPosts={userPosts} postItems={postItems} />}
+          {<CurrentUserPosts currentUser={this.props.currentUser}
+                            userPosts={userPosts}
+                            postItems={postItems}
+                            handleDelete={this.handleDelete}
+                          />}
 
           {<Post currentUser={this.props.currentUser}
-                 handlePostDelete={this.handlePostDelete}
                  postItems={postItems}
                  handleLike={this.handleLike}
+                 userPosts={this.userPosts}
                  onClick={()=> this.props.onLikeClick}/>}
       </div>
 

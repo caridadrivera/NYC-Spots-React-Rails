@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css'
 import { Fragment } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import LogginPage from './components/App/elements/LogginPage/LogginPage';
@@ -77,8 +78,9 @@ componentDidMount() {
     return (
 
       <Fragment>
-        <div className="home-page">
+
           <Switch>
+          <div className="home-page">
               <Route exact path="/signin" render={() => {
                 return <LogginPage handleUserLogin={this.handleUserLogin}/>}
               }
@@ -91,8 +93,9 @@ componentDidMount() {
                 return <SignUp handleSignUp={this.handleSignUp} />}
               }
               />
+            </div>
           </Switch>
-        </div>
+
       </Fragment>
     )
   }

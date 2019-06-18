@@ -24,7 +24,7 @@ render() {
                 {this.props.currentUser && post.user_id === this.props.currentUser.id ?
                   (
                     <div class="delete-button">
-                      <button onClick={()=> this.props.handleDelete(post.id) } className="btn btn-danger btn-sm">Delete</button>
+                      <button onClick={()=>this.props.handleDelete(post.id)} className="btn btn-danger btn-sm">Delete</button>
                     </div>
                   ): (
                   <div class="heart">
