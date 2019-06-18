@@ -10,7 +10,7 @@ class UserPage extends React.Component {
 state = {
     posts: [],
     open: false,
-    postlikes: 0
+    likebutton: true
   }
 
 
@@ -26,8 +26,6 @@ componentDidMount() {
         this.setState({
           posts: data.sort((a, b) => b.likes.length - a.likes.length)
         })
-
-
       })
   }
 }
@@ -44,7 +42,7 @@ handleLike = (likeObj) => {
   this.setState({posts: updatedPosts})
 }
 
-
+//user should only be able to delete its own posts
 ///prevent user from liking their own post
 //if clicked post_id === currentUser.post.id : dont let them clicke
 
@@ -70,9 +68,10 @@ onCloseModal = () => {
 
 
   render() {
+
     const open  = this.state.open
     const postItems = this.state.posts
- // console.log("current user", this.props.currentUser)
+  console.log("current user post", this.props.currentUser)
  // debugger
     return (
     <div id="home">
@@ -98,7 +97,7 @@ onCloseModal = () => {
           {<CurrentUserPosts currentUser={this.props.currentUser} />}
 
           {<Post currentUser={this.props.currentUser}
-                handlePostDelete={this.handlePostDelete}
+                 handlePostDelete={this.handlePostDelete}
                  postItems={postItems}
                  handleLike={this.handleLike}
                  onClick={()=> this.props.onLikeClick}/>}

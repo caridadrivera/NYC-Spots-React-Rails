@@ -28,21 +28,22 @@ handleDelete = (postid) => {
 
 onLikeClick= (postid, userid) => {
     // console.log("Am I here??", postid, userid)
-  fetch('http://localhost:3000/api/v1/likes', {
-    method: 'POST',
-    headers: {
-          'Content-Type': 'application/json',
-           Accept: 'application/json'
-               },
-    body: JSON.stringify({user_id: this.props.currentUser.id,
-    post_id: postid})
-         })
-    .then(res => res.json())
-    .then(res => {
-      console.log("likes", res)
-      this.props.handleLike(res)
-    })
-       }
+    fetch('http://localhost:3000/api/v1/likes', {
+      method: 'POST',
+      headers: {
+            'Content-Type': 'application/json',
+             Accept: 'application/json'
+                 },
+      body: JSON.stringify({user_id: this.props.currentUser.id,
+      post_id: postid})
+           })
+      .then(res => res.json())
+      .then(res => {
+        console.log("likes", res)
+        this.props.handleLike(res)
+      })
+
+   }
 
 render() {
 // console.log(likes)
@@ -54,7 +55,6 @@ const posts = this.props.postItems.map(post =>
             handleDelete={this.handleDelete}
              />
   )
-
 
 
     return (
