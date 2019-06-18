@@ -11,29 +11,29 @@ render() {
   // console.log(this.props.likes.length)
   const likes = this.props.likes.length
   const post = this.props.post
+
   return(
     (
-      <main class="main-area">
-
-        <div class="centered">
-
-          <section class="cards">
-
+      <main className="main-area">
+        <div className="centered">
+          <section className="cards">
             <article key={post.id} class="card">
-              <a href="#">
                 <figure class="thumbnail">
                 <img src={post.image_url} />
                 </figure>
-                <div class="card-content">
+              <div class="card-content">
                   <h2>{post.title}</h2>
                   <p>{post.content}</p>
+                  <div class="heart">
                     <span class="left floated">
                       <i class="heart outline like icon" onClick={() => this.props.onLikeClick(post.id, this.props.currentUser.id)}> Likes: {likes} </i>
                     </span>
-
-                </div>
-              </a>
-            </article>
+                  </div>
+              <div class="delete-button">
+                <button onClick={()=> this.props.handleDelete(post.id) } className="btn btn-danger btn-sm">Delete</button>
+              </div>
+          </div>
+        </article>
 
           </section>
 

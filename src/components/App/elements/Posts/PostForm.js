@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import ReactDOM from 'react-dom';
 import Modal from 'react-responsive-modal';
 
 
@@ -34,7 +33,6 @@ class PostForm extends React.Component {
 
 
   handleSubmit = (e) => {
-    const newPost = this.state
     e.preventDefault();
     fetch('http://localhost:3000/api/v1/posts', {
         method: 'POST',
@@ -49,27 +47,27 @@ class PostForm extends React.Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log("posttting", res)
-        this.setState(prevState => {
-          return {
-            posts: [
-              newPost
-            ]
-          }
-        })
+       const newPost = res
+       this.props.addNewPost(res)
       }
     )
   }
 
 
+
+
+
   render() {
+//modal doesnt close on submit,
+//new likes and new posts are only showed on refresh
 
    // console.log(this.props)
     const {fields} = this.state
     return (
       <div>
       <button onClick={this.props.onOpenModal}>add Post</button>
-    <Modal open={this.props.open} onClose={this.props.onCloseModal} center >
+    <Modal open={this.props.open} center onClose={this.props.onCloseModal} >
+
       <form
         className="ui form"
         onSubmit={this.handleSubmit}
@@ -86,9 +84,9 @@ class PostForm extends React.Component {
           <label>Image URL</label>
           <input name="image_url" value={fields.image_url} onChange={this.handleChange} type="text" />
         </div>
-        <button className="ui positive basic button">Add Post</button>
-      </form>
-    </Modal>
+        <button className="ui positive basic button" onClick={this.props.onCloseModal}>Submit</button>
+      </form >
+    </Modal >
     </div>
     )
   }

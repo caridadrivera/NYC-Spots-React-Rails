@@ -5,7 +5,6 @@ import LogginPage from './components/App/elements/LogginPage/LogginPage';
 import Post from './components/App/elements/Posts/Post'
 import SignIn from './components/auth/SignIn/SignIn'
 import SignUp from './components/auth/SignUp/SignUp'
-import NavBar from './components/App/elements/NavBar/NavBar'
 import UserPage from './components/App/elements/UserPage/UserPage'
 
 
