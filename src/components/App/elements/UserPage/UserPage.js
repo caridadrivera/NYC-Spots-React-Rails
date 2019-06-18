@@ -71,7 +71,8 @@ onCloseModal = () => {
 
     const open  = this.state.open
     const postItems = this.state.posts
-  console.log("current user post", this.props.currentUser)
+    const userPosts = this.props.currentUser ? this.props.currentUser.posts : []
+  console.log("current user post", userPosts)
  // debugger
     return (
     <div id="home">
@@ -94,7 +95,7 @@ onCloseModal = () => {
                        onOpenModal={this.onOpenModal}
                        onCloseModal={this.onCloseModal}/>  }
 
-          {<CurrentUserPosts currentUser={this.props.currentUser} />}
+          {<CurrentUserPosts currentUser={this.props.currentUser} userPosts={userPosts} postItems={postItems} />}
 
           {<Post currentUser={this.props.currentUser}
                  handlePostDelete={this.handlePostDelete}
