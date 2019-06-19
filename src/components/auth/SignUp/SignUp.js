@@ -1,5 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
+import './SignUp.sass'
+import '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/SignIn.sass'
+
+
 
 const initialState = {
   error:false,
@@ -89,7 +93,7 @@ class SignUp extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <button type="submit" className="ui basic green button">
+              <button type="submit" className="btn-login">
                 SignUp
               </button>
             </form>

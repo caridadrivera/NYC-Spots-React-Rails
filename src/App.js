@@ -7,7 +7,7 @@ import Post from './components/App/elements/Posts/Post'
 import SignIn from './components/auth/SignIn/SignIn'
 import SignUp from './components/auth/SignUp/SignUp'
 import UserPage from './components/App/elements/UserPage/UserPage'
-
+import '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/jquery.js'
 
 
 class App extends React.Component {
@@ -78,21 +78,18 @@ componentDidMount() {
     return (
 
       <Fragment>
-
           <Switch>
-          <div className="home-page">
+          <div className="home">
               <Route exact path="/signin" render={() => {
-                return <LogginPage handleUserLogin={this.handleUserLogin}/>}
+                return <LogginPage handleUserLogin={this.handleUserLogin} handleSignUp={this.handleSignUp}/>}
               }
               />
+              <Route path="/signup" compontent={SignUp} />
               <Route path="/userpage" render={() => {
                 return <UserPage currentUser={this.state.currentUser} handleLogout={this.handleLogout} handlePageClick={this.handlePageClick} />}
               }
               />
-              <Route path="/signup" render={() => {
-                return <SignUp handleSignUp={this.handleSignUp} />}
-              }
-              />
+
             </div>
           </Switch>
 

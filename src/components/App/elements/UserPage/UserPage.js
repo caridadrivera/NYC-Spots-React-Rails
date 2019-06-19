@@ -17,12 +17,13 @@ state = {
 componentDidMount() {
   const token = localStorage.getItem("token")
   if (!token) {
-    this.props.history.push("signin")
+    this.props.history.push("/signin")
   } else {
     fetch('http://localhost:3000/api/v1/posts')
       .then(res => res.json())
       .then(data => {
         console.log(data)
+        console.log(this.props)
         this.setState({
           posts: data.sort((a, b) => b.likes.length - a.likes.length)
         })
@@ -49,7 +50,7 @@ handleLike = (likeObj) => {
 
 handlePostDelete = (postid) => {
 const updatedPosts = this.state.posts.filter(post => post.id !== postid)
-console.log(updatedPosts);
+// console.log(updatedPosts);
   this.setState({
     posts: updatedPosts
   })
@@ -90,7 +91,7 @@ onCloseModal = () => {
     const open  = this.state.open
     const postItems = this.state.posts
     const userPosts = this.props.currentUser ? this.props.currentUser.posts : []
-  console.log("current user post", userPosts)
+  // console.log("current user post", userPosts)
  // debugger
     return (
     <div id="home">

@@ -11,13 +11,13 @@ render() {
   const post = this.props.post
   return(
     (
-      <main className="main-area">
-        <div className="centered">
-          <section className="cards">
-            <article key={post.id} class="card">
-                <figure class="thumbnail">
+    <div class="ui grid">
+        <div class="four wide column">
+          <div class="ui link cards">
+            <div class="card"key={post.id}>
+              <div class="image">
                 <img src={post.image_url} />
-                </figure>
+              </div>
               <div class="card-content">
                   <h2>{post.title}</h2>
                   <p>{post.content}</p>
@@ -34,12 +34,11 @@ render() {
                   </div>
                 )}
           </div>
-        </article>
 
-          </section>
-
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
     )
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
 import './SignIn.sass'
-import './Styling.js'
 
 const initialState = {
   error:false,
