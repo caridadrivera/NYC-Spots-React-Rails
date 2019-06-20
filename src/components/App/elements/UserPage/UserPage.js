@@ -1,7 +1,8 @@
 import React from 'react';
 import Post from '../Posts/Post';
 import PostForm from '../Posts/PostForm';
-import './UserPage.css'
+import { withRouter } from 'react-router-dom';
+import './UserPage.scss'
 import CurrentUserPosts from '../CurrentUserPosts/CurrentUserPosts';
 
 class UserPage extends React.Component {
@@ -58,6 +59,9 @@ const updatedPosts = this.state.posts.filter(post => post.id !== postid)
 
 
 
+
+
+
 handleDelete = (postid) => {
   console.log("coming through", postid)
   fetch(`http://localhost:3000/api/v1/posts/${postid}`, {
@@ -90,33 +94,38 @@ onCloseModal = () => {
 
     const open  = this.state.open
     const postItems = this.state.posts
+    // const currentUser = this.props.currentUser.username
     const userPosts = this.props.currentUser ? this.props.currentUser.posts : []
   // console.log("current user post", userPosts)
  // debugger
     return (
-    <div id="home">
-      <div className="nav">
-        <ul className="main-nav">
-        <li className="title">Welcome!</li>
-        <li><a className="home-btn nav-item"  onClick={this.props.handleLogout}>
-          { this.props.currentUser  ?
-              <h1> LogOut </h1>
-            : null }
-        </a></li>
+
+
+<div>
+<div class="drink">
+    <a href="http://www.animatedimages.org/cat-foods-and-drinks-298.htm"><img src="http://www.animatedimages.org/data/media/298/animated-eat-and-drink-image-0018.gif" border="0" alt="animated-eat-and-drink-image-0018" /></a>
+</div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right" onClick={this.props.handleLogout}>
+            <a>{ this.props.currentUser  ?
+                <h1> LogOut </h1>
+              : null }</a>
           </ul>
+      </div>
+    </nav>
 
-        </div>
-
-          {<PostForm postItems={postItems}
+        {<PostForm postItems={postItems}
                        currentUser={this.props.currentUser}
                        open={open}
                        addNewPost={this.addNewPost}
-                       onOpenModal={this.onOpenModal}
                        onCloseModal={this.onCloseModal}/>  }
 
           {<CurrentUserPosts currentUser={this.props.currentUser}
                             userPosts={userPosts}
                             postItems={postItems}
+                            onOpenModal={this.onOpenModal}
                             handleDelete={this.handleDelete}
                           />}
 
@@ -125,12 +134,11 @@ onCloseModal = () => {
                  handleLike={this.handleLike}
                  userPosts={this.userPosts}
                  onClick={()=> this.props.onLikeClick}/>}
-      </div>
-
+  </div>
     )
   }
 
 }
 
 
-export default UserPage;
+export default withRouter(UserPage);

@@ -64,8 +64,8 @@ class PostForm extends React.Component {
    // console.log(this.props)
     const {fields} = this.state
     return (
-      <div>
-      <button onClick={this.props.onOpenModal}>add Post</button>
+
+
     <Modal open={this.props.open} center onClose={this.props.onCloseModal} >
 
       <form
@@ -87,7 +87,7 @@ class PostForm extends React.Component {
         <button className="ui positive basic button" onClick={this.props.onCloseModal}>Submit</button>
       </form >
     </Modal >
-    </div>
+  
     )
   }
 }

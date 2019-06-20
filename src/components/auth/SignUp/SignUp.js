@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import './SignUp.sass'
-import '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/SignIn.sass'
 
 
 
@@ -53,6 +52,7 @@ class SignUp extends React.Component {
         else {
           console.log(this.props)
            this.props.handleSignUp(res)
+           console.log("res", res)
           this.props.history.push("/userpage")
         }
       })

@@ -2,21 +2,20 @@ import React from 'react';
 import SignIn from '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/SignIn'
 import SignUp from '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignUp/SignUp'
 import './LogginPage.scss';
-
+import {withRouter} from 'react-router-dom'
 
 class LogginPage extends React.Component {
-
-
-
 
   render() {
   // console.log(this.props)
 
 
     return (
+
+
     <div class="all">
       <label class="modal-btn" for="modal-toggle">Click me</label>
-
+        <h1> NYC Spots </h1>
       <input id="modal-toggle" type="checkbox"/>
       <label class="modal-backdrop" for="modal-toggle"></label>
       <div class="modal-content">
@@ -52,4 +51,4 @@ class LogginPage extends React.Component {
 }
 
 
-export default LogginPage;
+export default withRouter(LogginPage);

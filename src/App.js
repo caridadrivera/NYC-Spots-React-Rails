@@ -7,7 +7,6 @@ import Post from './components/App/elements/Posts/Post'
 import SignIn from './components/auth/SignIn/SignIn'
 import SignUp from './components/auth/SignUp/SignUp'
 import UserPage from './components/App/elements/UserPage/UserPage'
-import '/Users/caridadrivera/react-final-Travelgram/src/components/auth/SignIn/jquery.js'
 
 
 class App extends React.Component {
@@ -58,6 +57,7 @@ componentDidMount() {
 
 
  handleSignUp = (user) => {
+   localStorage.setItem("token", user.token)
    this.setState({currentUser: user})
  }
 
@@ -85,6 +85,7 @@ componentDidMount() {
               }
               />
               <Route path="/signup" compontent={SignUp} />
+
               <Route path="/userpage" render={() => {
                 return <UserPage currentUser={this.state.currentUser} handleLogout={this.handleLogout} handlePageClick={this.handlePageClick} />}
               }
