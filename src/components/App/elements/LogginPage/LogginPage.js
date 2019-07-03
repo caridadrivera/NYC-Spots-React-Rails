@@ -15,7 +15,8 @@ class LogginPage extends React.Component {
 
     <div class="all">
       <label class="modal-btn" for="modal-toggle">Click me</label>
-        <h1> NYC Spots </h1>
+
+        <h2> NYC Spots </h2>
       <input id="modal-toggle" type="checkbox"/>
       <label class="modal-backdrop" for="modal-toggle"></label>
       <div class="modal-content">

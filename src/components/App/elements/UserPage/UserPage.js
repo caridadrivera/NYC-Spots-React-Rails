@@ -10,8 +10,7 @@ class UserPage extends React.Component {
 
 state = {
     posts: [],
-    open: false,
-    likebutton: true
+    open: false
   }
 
 
@@ -40,15 +39,18 @@ addNewPost = (newPost) => {
 handleLike = (likeObj) => {
   const likedPost = this.state.posts.find(post => likeObj.post_id === post.id)
   likedPost.likes.push(likeObj)
-  const updatedPosts= this.state.posts.map(post => post.id === likeObj.post_id ? likedPost : post)
+  //this is what is changing the state on like to increase on click
+  const updatedPosts = this.state.posts.map(post => post.id === likeObj.post_id ? likedPost : post)
   this.setState({posts: updatedPosts})
+  //on click of the like button on the post, I would like the like to increase which it does and the button to de
+
 }
+
+
 
 //user should only be able to delete its own posts
 ///prevent user from liking their own post
 //if clicked post_id === currentUser.post.id : dont let them clicke
-
-
 handlePostDelete = (postid) => {
 const updatedPosts = this.state.posts.filter(post => post.id !== postid)
 // console.log(updatedPosts);
@@ -91,7 +93,7 @@ onCloseModal = () => {
 
 
   render() {
-
+    const disable = this.state.disabled
     const open  = this.state.open
     const postItems = this.state.posts
     // const currentUser = this.props.currentUser.username
@@ -106,15 +108,15 @@ onCloseModal = () => {
     <a href="http://www.animatedimages.org/cat-foods-and-drinks-298.htm"><img src="http://www.animatedimages.org/data/media/298/animated-eat-and-drink-image-0018.gif" border="0" alt="animated-eat-and-drink-image-0018" /></a>
 </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right" onClick={this.props.handleLogout}>
-            <a>{ this.props.currentUser  ?
+            { this.props.currentUser  ?
                 <h1> LogOut </h1>
-              : null }</a>
+              : null }
           </ul>
       </div>
-    </nav>
+    </div>
 
         {<PostForm postItems={postItems}
                        currentUser={this.props.currentUser}
@@ -132,6 +134,7 @@ onCloseModal = () => {
           {<Post currentUser={this.props.currentUser}
                  postItems={postItems}
                  handleLike={this.handleLike}
+                 disable={disable}
                  userPosts={this.userPosts}
                  onClick={()=> this.props.onLikeClick}/>}
   </div>
